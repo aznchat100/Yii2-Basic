@@ -31,7 +31,13 @@
     "scripts": {
         "post-create-project-cmd": [
             "yii\\composer\\Installer::postCreateProject"
-        ]
+        ],
+		
+		"post-install-cmd": [
+            "chmod 777 runtime",
+            "chmod 777 web/assets",
+            "chmod 755 yii"
+		]
     },
     "extra": {
         "yii\\composer\\Installer::postCreateProject": {
