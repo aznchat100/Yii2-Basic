@@ -13,6 +13,7 @@ use yii\data\Pagination;
 use app\models\Country;
 use app\models\UploadForm;
 use yii\web\UploadedFile;
+use app\models\StockForm;
 
 class SiteController extends Controller
 {
@@ -121,6 +122,7 @@ class SiteController extends Controller
             return $this->render('entry', ['model' => $model]);
         }
     }
+
     public function actionCountry()
     {
         $query = Country::find();
@@ -139,12 +141,13 @@ class SiteController extends Controller
             'pagination' => $pagination,
         ]);
     }
+
     public function actionUpload()
     {
         $model2 = new UploadForm();
 
         if (Yii::$app->request->isPost) {
-            $model2->imageFile= UploadedFile::getInstance($model2, 'imageFile');
+            $model2->imageFile = UploadedFile::getInstance($model2, 'imageFile');
             if ($model2->upload()) {
                 // file is uploaded successfully
                 return $this->goHome();
@@ -152,5 +155,26 @@ class SiteController extends Controller
         }
 
         return $this->render('upload', ['model' => $model2]);
+    }
+
+    public function actionChart($ticker = 'aapl', $timeframe = 'daily')
+    {
+        $model = new StockForm;
+
+        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+
+            if ($model->timeframe === 'weekly') {
+                $model->timeframe = '0&p=w';
+            } elseif ($model->timeframe === 'monthly') {
+                $model->timeframe = '0&p=m';
+            } else {
+                $model->timeframe = '1&p=d';
+            }
+            return $this->render('chart', ['ticker' => $model->ticker, 'timeframe' => $model->timeframe]);
+
+        } else {
+            // either the page is initially displayed or there is some validation error
+            return $this->render('chartform', ['model' => $model]);
+        }
     }
 }
