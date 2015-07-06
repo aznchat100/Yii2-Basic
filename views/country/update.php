@@ -8,7 +8,7 @@ use yii\helpers\Html;
 $this->title = 'Update Country: ' . ' ' . $model->name;
 $this->params['breadcrumbs'][] = ['label' => 'Countries', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->name, 'url' => ['view', 'id' => $model->code]];
-$this->params['breadcrumbs'][] = 'Update';
+$this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="country-update">
 
@@ -18,4 +18,4 @@ $this->params['breadcrumbs'][] = 'Update';
         'model' => $model,
     ]) ?>
 
-</div>
+ç

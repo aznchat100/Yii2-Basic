@@ -60,7 +60,7 @@ class SiteController extends Controller
 
     public function actionLogin()
     {
-        if (!\Yii::$app->user->isGuest) {
+        if (!Yii::$app->user->isGuest) {
             return $this->goHome();
         }
 
@@ -102,7 +102,7 @@ class SiteController extends Controller
         return $this->render('about');
     }
 
-    public function actionSay($message2 = 'Hello')
+    public function actionßSay($message2 = 'Hello')
     {
         return $this->render('say', ['message3' => $message2]);
     }
