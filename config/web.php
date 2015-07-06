@@ -4,6 +4,10 @@ $params = require(__DIR__ . '/params.php');
 
 $config = [
     'id' => 'basic',
+    /*
+    You may change the default controller with the following application configuration:
+    'defaultRoute' => 'site/say',
+    */
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'components' => [
