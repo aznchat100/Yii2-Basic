@@ -5,12 +5,12 @@ namespace app\models;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\UserLogin;
+use app\models\UserRecord;
 
 /**
- * UserSearch represents the model behind the search form about `app\models\UserLogin`.
+ * UserSearch represents the model behind the search form about `app\models\UserRecord`.
  */
-class UserSearch extends UserLogin
+class UserSearch extends UserRecord
 {
     /**
      * @inheritdoc
@@ -18,7 +18,7 @@ class UserSearch extends UserLogin
     public function rules()
     {
         return [
-            [['username'], 'safe'],
+            [['username', 'password'], 'safe'],
         ];
     }
 
@@ -40,7 +40,7 @@ class UserSearch extends UserLogin
      */
     public function search($params)
     {
-        $query = UserLogin::find();
+        $query = UserRecord::find();
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -54,7 +54,8 @@ class UserSearch extends UserLogin
             return $dataProvider;
         }
 
-        $query->andFilterWhere(['like', 'username', $this->username]);
+        $query->andFilterWhere(['like', 'username', $this->username])
+            ->andFilterWhere(['like', 'password', $this->password]);
 
         return $dataProvider;
     }

@@ -10,7 +10,7 @@ use Yii;
  * @property string $username
  * @property string $password
  */
-class UserLogin extends \yii\db\ActiveRecord
+class UserRecord extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc
