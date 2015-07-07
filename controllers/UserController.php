@@ -2,8 +2,8 @@
 
 namespace app\controllers;
 
+use app\models\UserRecord;
 use Yii;
-use app\models\UserLogin;
 use app\models\UserSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -60,7 +60,7 @@ class UserController extends Controller
      */
     public function actionCreate()
     {
-        $model = new UserLogin();
+        $model = new UserRecord();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->username]);
@@ -112,7 +112,7 @@ class UserController extends Controller
      */
     protected function findModel($id)
     {
-        if (($model = UserLogin::findOne($id)) !== null) {
+        if (($model = UserRecord::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');

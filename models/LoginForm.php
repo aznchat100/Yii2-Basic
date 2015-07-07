@@ -13,7 +13,7 @@ class LoginForm extends Model
     public $username;
     public $password;
     public $rememberMe = true;
-
+    public $user;
     private $_user = false;
 
     /**
@@ -41,10 +41,10 @@ class LoginForm extends Model
     public function validatePassword($attribute, $params)
     {
         if (!$this->hasErrors()) {
-            $user = $this->getUser();
+            $user = $this->getUser($this->username);
             //echo $this->password;
-            if (!$user || !$user->validatePassword($this->password)) {
-                $this->addError($attribute, 'Incorrect username or password.');
+            if (!$user or !$this->isCorrectHash($this->$attribute, $user->password)) {
+                $this->addError('password', 'Incorrect username or password.');
             }
         }
     }
@@ -56,7 +56,7 @@ class LoginForm extends Model
     public function login()
     {
         if ($this->validate()) {
-            return Yii::$app->user->login($this->getUser(), $this->rememberMe ? 3600*24*30 : 0);
+            return Yii::$app->user->login($this->getUser($this->username), $this->rememberMe ? 3600*24*30 : 0);
         } else {
             return false;
         }
@@ -67,12 +67,23 @@ class LoginForm extends Model
      *
      * @return User|null
      */
-    public function getUser()
+    private function getUser($username)
     {
-        if ($this->_user === false) {
-            $this->_user = User::findByUsername($this->username);
-        }
 
-        return $this->_user;
+            if(!$this->user)
+                $this->user = $this->fetchUser($username);
+
+
+        return $this->user;
+    }
+
+    private function fetchUser($username)
+    {
+        return UserRecord::findOne(compact('username'));
+    }
+
+    private function isCorrectHash($plaintext, $hash)
+    {
+        return Yii::$app->security->validatePassword($plaintext, $hash);
     }
 }

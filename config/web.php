@@ -47,6 +47,10 @@ $config = [
             'class' => 'app\components\MyComponent',
 
         ],
+
+        'user' =>[
+            'identityClass' => 'app\models\UserRecord'
+        ],
     ],
     'params' => $params,
 ];
