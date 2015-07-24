@@ -68,7 +68,7 @@ class SiteController extends Controller
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
             //return $this->goBack();
             //return $this->redirect($model->username);
-            return $this->redirect('?r=site/upload');
+            return $this->redirect(['site/upload']);
         } else {
             return $this->render('login', [
                 'model' => $model,
@@ -102,9 +102,18 @@ class SiteController extends Controller
         return $this->render('about');
     }
 
-    public function actionSay($message2 = 'Hello')
+   public function actionSay($message2 = 'Hello')
     {
-        return $this->render('say', ['message3' => $message2]);
+        $password = "test";
+        $hash = Yii::$app->getSecurity()->generatePasswordHash($password);
+    
+        //echo "$hash";
+    
+        if (Yii::$app->getSecurity()->validatePassword($password, $hash)) {
+            return $this->render('say', ['message'=>'successfully']);
+        } else {
+            return $this->render('say', ['message'=>'Wrong']);
+        }
     }
 
     public function actionEntry()

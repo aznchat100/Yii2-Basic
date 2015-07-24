@@ -1,4 +1,4 @@
 <?php
 use yii\helpers\Html;
 ?>
-<?= Html::encode($message3) ?>
+<?= Html::encode($message) ?>

@@ -43,11 +43,11 @@ class UserRecord extends ActiveRecord implements IdentityInterface
         $return = parent::beforeSave($insert);
 
         if($this->getIsNewRecord()){
-            $this->auth_key = Yii::$app -> security -> generateRandomKey($length = 255);
+            $this->auth_key = Yii::$app->getSecurity()->generateRandomKey($length = 255);
         }
 
         if ($this->isAttributeChanged('password')) {
-            $this->password = Yii::$app->security->generatePasswordHash($this->password);
+            $this->password = Yii::$app->getSecurity()->generatePasswordHash($this->password);
         }
         return $return;
     }
