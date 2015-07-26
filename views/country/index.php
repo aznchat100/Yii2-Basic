@@ -13,7 +13,9 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="country-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+    <?php // echo $this->render('_search', ['model' => $searchModel]); 
+            //echo "searchModel";
+    ?>
 
     <p>
         <?= Html::a('Create Country', ['create'], ['class' => 'btn btn-success']) ?>

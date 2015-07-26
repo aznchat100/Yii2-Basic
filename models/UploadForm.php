@@ -32,5 +32,5 @@ class UploadForm extends Model
 }
 
 //echo Yii::$app->basePath; /Library/Webserver/Document/basic
-//echo Yii::$app->request->BaseUrl; /basic/web(can'y use this one)  
+//echo Yii::$app->request->BaseUrl; /basic/web(can't use this one)
 //echo Yii::getAlias('@webroot'); /Library/Webserver/Document/basic
