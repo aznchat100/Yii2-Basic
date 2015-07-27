@@ -2,7 +2,7 @@ Composer.json
 =============
 
 If you are trying to git clone from github the yii project you are working on.
-The composer.json has to be modified in order to update the permissions of
+The composer.json has to be modified in order to update the permissions of runtime, web/assets, and yii file.
 
 CONFIGURATION
 -------------
@@ -29,4 +29,4 @@ The composer.json only changes the permission on postCreateProject. You have to 
 https://github.com/aznchat100/Yii2-Basic/blob/master/composer.json
 
 See also:https://adamcod.es/2013/03/07/composer-install-vs-composer-update.html
-to get a better understanding of compser install and composer update difference.
+to get a better understanding of composer install and composer update difference.
