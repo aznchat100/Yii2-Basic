@@ -1,4 +1,4 @@
-<?phps
+<?php
 namespace app\components;
  
  
