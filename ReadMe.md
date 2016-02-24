@@ -2,7 +2,7 @@ Composer.json
 =============
 
 If you are trying to git clone from github the yii project you are working on.
-The composer.json has to be modified in order to update the permissions of runtime, web/assets, and yii file.
+The ```composer.json``` has to be modified in order to update the permissions of runtime, web/assets, and yii file.
 
 CONFIGURATION
 -------------
@@ -24,7 +24,7 @@ Edit the file `composer.json`:
 
 before composer installs.
 
-The composer.json only changes the permission on postCreateProject. You have to modify it to post-install-cmd or simply add it into your composer.json. The modified composer.json can be found here: 
+The ```composer.json``` only changes the permission on postCreateProject. You have to modify it to ```post-install-cmd``` or simply add it into your ```composer.json```. The modified composer.json can be found here: 
 
 https://github.com/ghostreport/Yii2-Basic/blob/master/composer.json
 
